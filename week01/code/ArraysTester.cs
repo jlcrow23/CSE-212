@@ -1,3 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
+using System.Xml.XPath;
+
 public static class ArraysTester {
     /// <summary>
     /// Entry point for the tests
@@ -39,7 +44,16 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //instead of a list type use a double type
+        double[] results = new double[length];
+
+        for (int i = 1; i <= length; i++) {
+
+            //multiply the number and add it to the array of numbers
+            results[i-1] = number*i;
+        }
+
+        return results; // return results
     }
     
     /// <summary>
@@ -56,6 +70,17 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        amount %= data.Count;
+        if(amount == 0) return;
 
+        int[] range = new int[amount];
+        data.CopyTo(data.Count - amount, range, 0, amount);
+        // copy entire list to array
+        data.RemoveRange(data.Count - amount, amount);
+        // remove range of elements(amount)
+        data.InsertRange(0, range);
+        // Insert new array in new order
     }
+        
+        
 }
