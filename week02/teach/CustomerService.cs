@@ -11,22 +11,32 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add one and serve at the same time?
+        // Expected Result: Display customer
         Console.WriteLine("Test 1");
-
-        // Defect(s) Found: 
+        var serve = new CustomerService(4);
+        serve.AddNewCustomer();
+        serve.ServeCustomer();
+        // Defect(s) Found: Needs to get the customer before deleting from the list
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add two customers and then serve them in right order
+        // Expected Result: display customers in the order they were entered 
         Console.WriteLine("Test 2");
-
-        // Defect(s) Found: 
+        serve = new CustomerService(4);
+        serve.AddNewCustomer();
+        serve.AddNewCustomer();
+        Console.WriteLine($"Before serving customers: {serve}");
+        serve.ServeCustomer();
+        serve.ServeCustomer();
+        Console.WriteLine($"After serving customer: {serve}");
+        // Defect(s) Found: none
 
         Console.WriteLine("=================");
+        serve = new CustomerService(4);
+        serve.ServeCustomer();
 
         // Add more Test Cases As Needed Below
     }
@@ -88,9 +98,18 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+        // Need to check if there are customers to serve
+        if (_queue.Count <= 0) // Needs to check queue length
+        {
+            Console.WriteLine("No Customers in the queue");
+        }
+        else {
+            var customer = _queue[0];
+            _queue.RemoveAt(0);
+            Console.WriteLine(customer);
+        }
+        
+        
     }
 
     /// <summary>
