@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.Text.Json;
+using Microsoft.VisualBasic.FileIO;
 
 public static class SetsAndMapsTester {
     public static void Run() {
@@ -108,8 +110,21 @@ public static class SetsAndMapsTester {
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     private static void DisplayPairs(string[] words) {
+        
+        var word = new HashSet<string>();
+        var pair = new HashSet<string>();
+        foreach ( var w in words)
+        {
+             if (word == pair)
+            {
+                Console.WriteLine($"{word} & {pair}");
+            }
+        }
+       
+        
         // To display the pair correctly use something like:
-        // Console.WriteLine($"{word} & {pair}");
+        
+                
         // Each pair of words should displayed on its own line.
     }
 
@@ -127,11 +142,21 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 2 #
     /// #############
-    private static Dictionary<string, int> SummarizeDegrees(string filename) {
+    private static Dictionary<string, int> SummarizeDegrees(string filename) 
+    {
         var degrees = new Dictionary<string, int>();
-        foreach (var line in File.ReadLines(filename)) {
+        var person = 0;
+        var totalDegree = degrees.ToArray();
+        foreach (var line in File.ReadLines(filename)) 
+        {
             var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
+            var study = fields[3];
+            if (degrees.ContainsKey(study))
+                Array.Sort(totalDegree);
+                for (var i = 0; i < 50; i++)
+                {
+                    return degrees;
+                }
         }
 
         return degrees;
@@ -156,10 +181,25 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 3 #
     /// #############
-    private static bool IsAnagram(string word1, string word2) {
+    private static bool IsAnagram(string word1, string word2) 
+    {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
-    }
+        var w1Array = word1.Replace(" ","").ToLower().ToCharArray();
+
+        var w2Array = word2.Replace(" ","").ToLower().ToCharArray();
+
+        if (w1Array.Length != w2Array.Length)
+        {
+            return false;
+        }
+        Array.Sort(w1Array);
+        Array.Sort(w2Array);
+
+        word1 = new string(w1Array);
+        word2 = new string(w2Array);
+        return word1 == word2;
+    } // Still isn't working for i am lord voldemort...
+    // Firgured out the problem was that I needed to have the spaces removed before checking length
 
     /// <summary>
     /// Sets up the maze dictionary for problem 4

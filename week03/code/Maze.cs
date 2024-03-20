@@ -1,3 +1,6 @@
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic;
+
 /// <summary>
 /// Defines a maze using a dictionary. The dictionary is provided by the
 /// user when the Maze object is created. The dictionary will contain the
@@ -30,6 +33,15 @@ public class Maze {
     /// </summary>
     public void MoveLeft() {
         // FILL IN CODE
+        _currX = -1;
+        _currY = 1;
+        foreach (var move in _mazeMap)
+        {
+            if (_currX == 1)
+            {
+
+            }
+        }
     }
 
     /// <summary>
