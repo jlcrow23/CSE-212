@@ -163,23 +163,23 @@ public class LinkedList : IEnumerable<int> {
                 if (curr == _tail) {
                     RemoveTail(); // remove tail from list
                     InsertTail(newValue); // insert new tail
-                    continue;
+                    // continue;
                 }
                 
                 else {
                     Node newNode = new(newValue);
                     // Remove(oldValue);
                     // InsertAfter(oldValue, newValue);
-                    curr.Next!.Prev = curr.Prev; // Disconnect the node after
-                    curr.Prev!.Next = curr.Next; // Disconnect the node before
-                    newNode.Prev = curr; // Connect new node to the node containing 'value'
-                    newNode.Next = curr.Next; // Connect new node to the node after 'value'
-                    curr.Next!.Prev = newNode; // Connect node after 'value' to the new node
-                    curr.Next = newNode; // Connect the node containing 'value' to the new node
+                    curr.Next!.Prev = newNode.Prev; // Disconnect the node after
+                    curr.Prev!.Next = newNode.Next; // Disconnect the node before
+                    // newNode.Prev = curr; // Connect new node to the node containing 'value'
+                    // newNode.Next = curr.Next; // Connect new node to the node after 'value'
+                    // curr.Next!.Prev = newNode; // Connect node after 'value' to the new node
+                    // curr.Next = newNode; // Connect the node containing 'value' to the new node
                     
                 } 
             }
-            // curr = curr.Next; // Go to the next node to search for 'value'
+            curr = curr.Next; // Go to the next node to search for 'value'
             return;
         }
     }
