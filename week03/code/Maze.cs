@@ -33,14 +33,17 @@ public class Maze {
     /// </summary>
     public void MoveLeft() {
         // FILL IN CODE
-        _currX = -1;
-        _currY = 1;
+        var x = _currX;
+        var y = _currY;
         foreach (var move in _mazeMap)
         {
             if (_currX == 1)
             {
 
             }
+            else
+                Console.WriteLine("Can't go that way");
+                break;
         }
     }
 

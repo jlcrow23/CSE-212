@@ -110,21 +110,12 @@ public static class SetsAndMapsTester {
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     private static void DisplayPairs(string[] words) {
+
+        var word = new HashSet<string>(words);
+        var pair = new HashSet<string>(words);
         
-        var word = new HashSet<string>();
-        var pair = new HashSet<string>();
-        foreach ( var w in words)
-        {
-             if (word == pair)
-            {
-                Console.WriteLine($"{word} & {pair}");
-            }
-        }
-       
-        
-        // To display the pair correctly use something like:
-        
-                
+        if (word == pair) 
+           Console.WriteLine($"{word} & {pair}");     
         // Each pair of words should displayed on its own line.
     }
 
@@ -145,20 +136,25 @@ public static class SetsAndMapsTester {
     private static Dictionary<string, int> SummarizeDegrees(string filename) 
     {
         var degrees = new Dictionary<string, int>();
+
+        using var reader = new TextFieldParser(filename);
+        reader.TextFieldType = FieldType.Delimited;
+        reader.SetDelimiters(",");
+
         var person = 0;
         var totalDegree = degrees.ToArray();
-        foreach (var line in File.ReadLines(filename)) 
-        {
-            var fields = line.Split(",");
-            var study = fields[3];
-            if (degrees.ContainsKey(study))
-                Array.Sort(totalDegree);
-                for (var i = 0; i < 50; i++)
-                {
-                    return degrees;
-                }
-        }
 
+        while (!reader.EndOfData)
+        {
+            var fields = reader.ReadFields()!;
+            var study = fields[3];
+            
+            if (degrees.ContainsKey(study))
+                person++;
+            else
+                degrees.Add(study, person++);
+        }
+        Array.Sort(totalDegree);
         return degrees;
     }
 
