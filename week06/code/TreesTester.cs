@@ -1,3 +1,4 @@
+
 public static class TreesTester {
     /// <summary>
     /// Entry point for the Prove 9 tests
@@ -98,5 +99,30 @@ public static class TreesTester {
     /// <param name="bst">the BinarySearchTree in which to insert the values</param>
     private static void InsertMiddle(int[] sortedNumbers, int first, int last, BinarySearchTree bst) {
         // TODO Start Problem 5
+        Node newNode = new Node(first);
+        Node newNode2 = new Node (last);
+        if (sortedNumbers == null)
+        {
+            return;
+        }
+        
+        var middle = (sortedNumbers.Length - 1) / 2;
+        if ( first < middle)
+        {
+            if (bst is null)
+            {
+                Left.Insert(first);
+
+            }
+        }
+        else
+        {
+            if (last > middle)
+            {
+                bst.Insert(last);
+            }
+        }
+        
+        
     }
 }
