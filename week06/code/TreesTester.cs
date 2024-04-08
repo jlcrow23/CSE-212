@@ -101,6 +101,7 @@ public static class TreesTester {
         // TODO Start Problem 5
         Node newNode = new Node(first);
         Node newNode2 = new Node (last);
+        var left = Node.Left;
         if (sortedNumbers == null)
         {
             return;
